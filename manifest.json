@@ -1,0 +1,17 @@
+{
+  "name": "Gnosis - Convertidor de Documentos",
+  "short_name": "Gnosis",
+  "description": "Convierte documentos, imágenes y archivos directo en tu navegador.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f97316",
+  "icons": [
+    {
+      "src": "preview.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
