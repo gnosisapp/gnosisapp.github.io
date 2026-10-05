@@ -1,11 +1,33 @@
-TODOS LOS DERECHOS RESERVADOS
+LICENCIA DE SOFTWARE PROPIETARIO, DERECHOS DE AUTOR Y TÉRMINOS DE USO
+Copyright (c) 2026 Gnosis (gnosisapp). Todos los derechos reservados.
+Obra intelectual desarrollada y publicada bajo seudónimo.
 
-Copyright (c) 2026 Gnosis
+1. TITULARIDAD Y MARCO LEGAL APLICABLE
+El software, código fuente, código objeto, arquitectura técnica, algoritmos, interfaz gráfica de usuario (UI), diseño, hojas de estilo, logotipos, marcas distintivas y documentación complementaria correspondientes al proyecto "Gnosis" (en lo sucesivo, "el Software") constituyen una obra intelectual protegida por la Ley Federal del Derecho de Autor (LFDA) de los Estados Unidos Mexicanos (incluyendo sus disposiciones relativas a obras seudónimas), así como por los tratados internacionales en materia de propiedad intelectual de los que México es parte (incluyendo el Convenio de Berna para la Protección de las Obras Literarias y Artísticas, el Tratado de la OMPI sobre Derecho de Autor y el T-MEC). La titularidad originaria y exclusiva corresponde a los desarrolladores y creadores del proyecto Gnosis.
 
-Por la presente se prohibe de manera expresa a cualquier persona o entidad comercial:
+2. DERECHOS MORALES Y PATRIMONIALES
+De conformidad con los artículos 13, 14, 21 y 27 de la LFDA y los tratados internacionales afines, los creadores conservan en todo momento la titularidad originaria y exclusiva de los derechos morales sobre la obra bajo el seudónimo o denominación del proyecto, así como la totalidad de los derechos patrimoniales para su explotación, distribución, comunicación pública y reproducción.
 
-1. Copiar, distribuir, reproducir, sublicenciar, revender o explotar comercialmente este software y sus archivos fuente, de forma modificada o sin modificar.
-2. Utilizar este codigo como parte de una aplicacion comercial, plataforma de pago, servicio SaaS o producto cerrado sin autorizacion explicita y por escrito de Gnosis.
-3. Eliminar este aviso de copyright o las atribuciones de autoria en los archivos fuente.
+3. CONCESIÓN DE LICENCIA LIMITADA DE USO
+Se otorga al usuario final una licencia no exclusiva, intransferible, revocable y de alcance personal para:
+  a) Ejecutar, interactuar y utilizar el Software a través de navegadores web compatibles.
+  b) Instalar la aplicación en dispositivos personales mediante la tecnología Progressive Web App (PWA) con el único fin de realizar conversiones de archivos para uso personal, académico o profesional interno.
 
-El acceso al repositorio o la visualizacion del codigo en entornos web no confiere ninguna licencia implicita de uso comercial ni transferencia de derechos de autor.
+4. RESTRICCIONES EXPRESAS
+Queda estrictamente prohibido a cualquier persona física o moral, sin el consentimiento previo, explícito y por escrito del titular del Software:
+  a) Copiar, clonar, bifurcar (fork), reproducir total o parcialmente, distribuir, revender, arrendar o sublicenciar el código fuente, diseño visual o activos multimedia del Software.
+  b) Alojar, desplegar o publicar copias idénticas, réplicas sustanciales o versiones modificadas del Software en otros dominios, servidores web, repositorios públicos o tiendas de aplicaciones.
+  c) Descompilar, aplicar ingeniería inversa, desensamblar o extraer componentes privativos del código con propósitos comerciales, lucrativos o de atribución ilegítima.
+  d) Retirar, ocultar, distorsionar o modificar las leyendas de derechos de autor, avisos legales, firmas digitales o metadatos de autoría incrustados en el código y en la interfaz.
+
+5. PRIVACIDAD Y PROCESAMIENTO LOCAL DE LA INFORMACIÓN
+El Software opera procesando los archivos y documentos exclusivamente de manera local en la memoria y entorno de ejecución del dispositivo del usuario (lado del cliente). El titular del Software no recopila, almacena, transmite ni tiene acceso a los documentos, datos personales o archivos manipulados mediante la herramienta. La integridad del entorno informático y de los archivos es responsabilidad exclusiva del usuario.
+
+6. COMPONENTES Y LIBRERÍAS DE TERCEROS
+El Software integra librerías y dependencias de código abierto de terceros (tales como Tailwind CSS, jsPDF, PapaParse, JSZip, LameJS, PDF-Lib, pdf.js, entre otras). Dichos componentes se rigen por sus respectivas licencias originales (MIT, Apache 2.0, BSD, LGPL o equivalentes). Su incorporación en el proyecto se realiza respetando sus términos originales y no cede ni compromete los derechos de propiedad intelectual sobre el código propietario, arquitectura, marca o diseño visual de Gnosis.
+
+7. EXCLUSIÓN DE GARANTÍAS Y LÍMITE DE RESPONSABILIDAD
+EL SOFTWARE SE SUMINISTRA "TAL CUAL" ("AS IS"), SIN GARANTÍA DE NINGUNA ESPECIE, NI EXPRESA NI IMPLÍCITA, INCLUYENDO, DE FORMA ENUNCIATIVA MAS NO LIMITATIVA, GARANTÍAS DE COMERCIABILIDAD, APTITUD PARA UN PROPÓSITO PARTICULAR O AUSENCIA DE ERRORES. EN NINGÚN CASO EL TITULAR DE LOS DERECHOS SERÁ RESPONSABLE POR DAÑOS DIRECTOS, INDIRECTOS, INCIDENTALES, EMERGENTES O PERJUICIOS ESPECIALES (INCLUYENDO PÉRDIDA DE DATOS, CORRUPCIÓN DE ARCHIVOS O LUCRO CESANTE) QUE SE DERIVEN DEL USO O DE LA IMPOSIBILIDAD DE USO DE ESTE SOFTWARE.
+
+8. JURISDICCIÓN Y LEGISLACIÓN APLICABLE
+Para la interpretación, cumplimiento y resolución de cualquier controversia judicial o extrajudicial derivada del uso no autorizado o licenciamiento de este Software, las partes se someten a las leyes federales de los Estados Unidos Mexicanos y a los tratados internacionales aplicables en materia de derechos de autor y propiedad intelectual, ante los tribunales competentes.
