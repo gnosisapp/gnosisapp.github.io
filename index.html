@@ -969,8 +969,8 @@ document.addEventListener('input', e => { const t = e.target; if (t.dataset && t
     }, 1800 + Math.random() * 3200);
   })();
   var mob = matchMedia('(pointer:coarse)').matches || (navigator.deviceMemory && navigator.deviceMemory <= 4);
-  var MODEL = mob ? 'Llama-3.2-1B-Instruct-q4f16_1-MLC' : 'Qwen2.5-1.5B-Instruct-q4f16_1-MLC';
-  var SIZE = mob ? '700 MB' : '1 GB';
+  var MODEL = 'Llama-3.2-1B-Instruct-q4f16_1-MLC';
+  var SIZE = '700 MB';
   var SYS = 'Eres Gnovi, asistente oficial de Gnosis (convertidor web en el navegador, 100% privado y local).\n\n' +
     'TOLERANCIA A ERRORES Y LENGUAJE:\n' +
     '- Interpreta siempre la intencion del usuario ignorando faltas de ortografia, errores de dedo, omision de tildes o abreviaturas informales (por ejemplo: "kombertir", "aser", "biseversa", "ke aces", "q ase", "vidio", "img").\n\n' +
