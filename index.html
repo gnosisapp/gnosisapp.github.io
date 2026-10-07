@@ -945,7 +945,7 @@ document.addEventListener('input', e => { const t = e.target; if (t.dataset && t
   <div class="gv-m" id="gv-m" aria-live="polite"></div>
   <div class="gv-w"><label class="f sw"><span>Buscar en Wikipedia</span><input type="checkbox" class="tg" id="gv-wk"></label><p class="m" id="gv-wn">Apagado. No sale nada de tu dispositivo.</p></div>
   <form class="gv-s" id="gv-f" autocomplete="off"><input type="text" id="gv-i" placeholder="Escribe a Gnovi" maxlength="500" enterkeyhint="send" disabled><button class="btn" id="gv-go" type="submit" disabled>Enviar</button></form>
-  <p class="m gv-nt">Gnovi es una IA en Beta y puede cometer errores.</p>
+  <p class="m gv-nt">Gnovi es una IA en Beta y puede cometer errores.<br>Built with Llama</p>
 </section>
 <script>
 (function () {
@@ -1001,7 +1001,7 @@ document.addEventListener('input', e => { const t = e.target; if (t.dataset && t
   ];
   var ACT = /[ck]onver|pasar|pasa\b|[ha]ser|[ha]z\b|[ck]rea|genera|abri[rn]|abre\b|uni[rn]|une\b|extra|[ck]omprim|ne[cs]e[cs]it|[qk]uiero|[ck][oó]mo|\ba\b|\bto\b/i;
   var WHO = /qui[eé]n eres|qu[eé] eres|c[oó]mo te llamas|cu[aá]l es tu nombre|qui[eé]n te (cre[oó]|hizo|desarroll[oó]|program[oó])|eres (chatgpt|claude|gemini)/i;
-  var ID = 'Soy Gnovi, el asistente de IA de Gnosis. Gnosis me integró en esta herramienta, pero funciono con modelos de lenguaje abierto (Qwen de Alibaba y Llama de Meta) que corre en tu dispositivo. Estoy en Beta y puedo cometer errores.';
+  var ID = 'Soy Gnovi, el asistente de IA de Gnosis. Gnosis me integró en esta herramienta, pero funciono con Llama 3.2, un modelo de lenguaje de Meta que corre en tu dispositivo. Estoy en Beta y puedo cometer errores.';
   var eng = null, busy = false, loading = false, chatted = false, hist = [];
   var box = $('#gv-m'), inp = $('#gv-i'), go = $('#gv-go');
   var down = function (smooth) { box.scrollTo({ top: box.scrollHeight, behavior: smooth ? 'smooth' : 'auto' }); };
