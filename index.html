@@ -971,7 +971,19 @@ document.addEventListener('input', e => { const t = e.target; if (t.dataset && t
   var mob = matchMedia('(pointer:coarse)').matches || (navigator.deviceMemory && navigator.deviceMemory <= 4);
   var MODEL = mob ? 'Llama-3.2-1B-Instruct-q4f16_1-MLC' : 'Qwen2.5-1.5B-Instruct-q4f16_1-MLC';
   var SIZE = mob ? '700 MB' : '1 GB';
-  var SYS = 'Eres Gnovi, el copiloto oficial de la web app Gnosis (convertidor local y privado de archivos). REGLAS OBLIGATORIAS: 1) TÚ NO PROCESAS, RECIBES NI DESCARGAS ARCHIVOS DIRECTAMENTE EN ESTE CHAT. Jamás digas "voy a convertirlo", "aquí tienes la descarga" ni inventes links. 2) Tu única función al hablar de archivos es guiar al usuario a la sección correcta de la app: "Imágenes", "Audio", "Video a audio", "Documentos y datos" (para PDF, Word/DOCX, TXT, CSV, JSON), "Escáner", "Unir PDF" y "Códigos QR". 3) Explica siempre los pasos dentro de la interfaz: ir a la pestaña correspondiente, arrastrar el archivo, seleccionar el formato deseado en las opciones y pulsar "Convertir". 4) Sé directo, conciso, amable y responde siempre en español.';
+  var SYS = 'Eres Gnovi, el asistente oficial de Gnosis (convertidor web en tu navegador). ' +
+    'MAPA DE HERRAMIENTAS:\n' +
+    '- "Imágenes": Convierte PNG, JPG, WEBP y BMP entre sí, y a PDF.\n' +
+    '- "Audio": Convierte WAV, MP3, OGG, OPUS, M4A, AAC, FLAC y AIFF en ambas direcciones.\n' +
+    '- "Video a audio": Extrae audio (MP4/MOV a MP3/WAV/AAC). NO convierte audio de vuelta a video.\n' +
+    '- "Documentos y datos": Convierte entre PDF (con texto), Word (DOCX/DOC), TXT, Markdown, HTML, JSON, CSV y RTF en ambas direcciones.\n' +
+    '- "Escáner": Pasa fotos de apuntes a PDF limpio.\n' +
+    '- "Unir PDF": Une dos o más PDFs.\n' +
+    '- "Códigos QR": Genera códigos QR.\n\n' +
+    'REGLAS:\n' +
+    '1. TÚ NO CONVIERTES NI DESCARGAS NADA AQUÍ EN EL CHAT; guía a la pestaña adecuada.\n' +
+    '2. Si te preguntan "¿y viceversa?" o "¿al revés?", revisa el mensaje anterior y aclara si esa herramienta lo permite en ambos sentidos.\n' +
+    '3. Responde siempre en español, breve y en máximo 2 o 3 oraciones.';
   var TOOLS = [[/\bqr\b/i, 'qr', 'Códigos QR'], [/esc[aá]ner|escanear|apuntes/i, 'scan', 'Escáner'], [/unir|unificar|juntar|combinar/i, 'merge', 'Unir PDF'], [/extraer audio|video a audio|audio d[eo]l? video/i, 'vid', 'Video a audio'], [/word|docx?\b|pdf|csv|json|documento/i, 'doc', 'Documentos y datos'], [/imagen|foto|jpg|jpeg|png|webp/i, 'img', 'Imágenes'], [/audio|mp3|wav|m4a/i, 'aud', 'Audio']];
   var ACT = /convert|pasar|pasa\b|hacer|haz\b|crea|genera|abrir|abre\b|unir|une\b|extra|comprim|necesito|quiero|c[oó]mo|\ba\b|\bto\b/i;
   var WHO = /qui[eé]n eres|qu[eé] eres|c[oó]mo te llamas|cu[aá]l es tu nombre|qui[eé]n te (cre[oó]|hizo|desarroll[oó]|program[oó])|eres (chatgpt|claude|gemini)/i;
@@ -1027,6 +1039,7 @@ document.addEventListener('input', e => { const t = e.target; if (t.dataset && t
       b.textContent = 'Ir a ' + tool[2];
       b.onclick = function () { openTool(tool[1]); };
       m.appendChild(b);
+      hist.push({ role: 'user', content: q }, { role: 'assistant', content: m.textContent });
       setFace('happy'); setTimeout(function () { setFace('idle'); }, 700); busy = false; setOn(true); return;
     }
     var out = add('a gv-ty', ''); out.innerHTML = '<i></i><i></i><i></i>'; setFace('think'); var ctx = '';
@@ -1048,6 +1061,17 @@ document.addEventListener('input', e => { const t = e.target; if (t.dataset && t
       }
       done = true; if (!buf) buf = 'No pude generar respuesta.'; if (!started) start();
       await wait;
+      var toolMencionada = TOOLS.find(function(t) { return new RegExp(t[2], 'i').test(buf); });
+      if (toolMencionada && !out.querySelector('button')) {
+        var bAuto = document.createElement('button');
+        bAuto.type = 'button';
+        bAuto.className = 'btn sm';
+        bAuto.style.display = 'block';
+        bAuto.style.marginTop = '8px';
+        bAuto.textContent = 'Ir a ' + toolMencionada[2];
+        bAuto.onclick = function() { openTool(toolMencionada[1]); };
+        out.appendChild(bAuto);
+      }
       if (ctx) { var p = document.createElement('p'); p.className = 'm'; p.textContent = 'Consulté Wikipedia: «' + q.slice(0, 60) + '»'; out.appendChild(p); }
       hist.push({ role: 'user', content: q }, { role: 'assistant', content: buf });
       setFace('happy'); setTimeout(function () { setFace('idle'); }, 700);
