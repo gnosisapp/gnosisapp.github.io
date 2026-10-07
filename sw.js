@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gnosis-cache-v1.3';
+const CACHE_NAME = 'gnosis-cache-v2.0';
 const ASSETS = [
   './',
   './index.html',
