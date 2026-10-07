@@ -971,9 +971,9 @@ document.addEventListener('input', e => { const t = e.target; if (t.dataset && t
   var mob = matchMedia('(pointer:coarse)').matches || (navigator.deviceMemory && navigator.deviceMemory <= 4);
   var MODEL = mob ? 'Llama-3.2-1B-Instruct-q4f16_1-MLC' : 'Qwen2.5-1.5B-Instruct-q4f16_1-MLC';
   var SIZE = mob ? '700 MB' : '1 GB';
-  var SYS = 'Eres Gnovi, el asistente de Gnosis, una app que convierte archivos en el navegador. Responde siempre en español, breve y claro. Si recibes CONTEXTO de Wikipedia, úsalo y dilo; si no sabes algo, admítelo sin inventar. Si te preguntan quién eres: eres Gnovi, el asistente de IA de Gnosis, integrado en la herramienta y basado en modelos abiertos (Qwen de Alibaba y LLama de Meta); no afirmes que Gnosis creó el modelo. Herramientas de la app: Imágenes, Audio, Video a audio, Documentos y datos (incluye PDF a Word), Escáner, Unir PDF y Códigos QR.';
+  var SYS = 'Eres Gnovi, el copiloto oficial de la web app Gnosis (convertidor local y privado de archivos). REGLAS OBLIGATORIAS: 1) TÚ NO PROCESAS, RECIBES NI DESCARGAS ARCHIVOS DIRECTAMENTE EN ESTE CHAT. Jamás digas "voy a convertirlo", "aquí tienes la descarga" ni inventes links. 2) Tu única función al hablar de archivos es guiar al usuario a la sección correcta de la app: "Imágenes", "Audio", "Video a audio", "Documentos y datos" (para PDF, Word/DOCX, TXT, CSV, JSON), "Escáner", "Unir PDF" y "Códigos QR". 3) Explica siempre los pasos dentro de la interfaz: ir a la pestaña correspondiente, arrastrar el archivo, seleccionar el formato deseado en las opciones y pulsar "Convertir". 4) Sé directo, conciso, amable y responde siempre en español.';
   var TOOLS = [[/\bqr\b/i, 'qr', 'Códigos QR'], [/esc[aá]ner|escanear|apuntes/i, 'scan', 'Escáner'], [/unir|unificar|juntar|combinar/i, 'merge', 'Unir PDF'], [/extraer audio|video a audio|audio d[eo]l? video/i, 'vid', 'Video a audio'], [/word|docx?\b|pdf|csv|json|documento/i, 'doc', 'Documentos y datos'], [/imagen|foto|jpg|jpeg|png|webp/i, 'img', 'Imágenes'], [/audio|mp3|wav|m4a/i, 'aud', 'Audio']];
-  var ACT = /convert|pasar|pasa |hacer|haz |crea|genera|abrir|abre|unir|une |extra|comprim|necesito|quiero|c[oó]mo/i;
+  var ACT = /convert|pasar|pasa\b|hacer|haz\b|crea|genera|abrir|abre\b|unir|une\b|extra|comprim|necesito|quiero|c[oó]mo|\ba\b|\bto\b/i;
   var WHO = /qui[eé]n eres|qu[eé] eres|c[oó]mo te llamas|cu[aá]l es tu nombre|qui[eé]n te (cre[oó]|hizo|desarroll[oó]|program[oó])|eres (chatgpt|claude|gemini)/i;
   var ID = 'Soy Gnovi, el asistente de IA de Gnosis. Gnosis me integró en esta herramienta, pero funciono con modelos de lenguaje abierto (Qwen de Alibaba y Llama de Meta) que corre en tu dispositivo. Estoy en Beta y puedo cometer errores.';
   var eng = null, busy = false, loading = false, chatted = false, hist = [];
@@ -1021,8 +1021,12 @@ document.addEventListener('input', e => { const t = e.target; if (t.dataset && t
     if (WHO.test(q)) { add('a', ID); setFace('happy'); setTimeout(function () { setFace('idle'); }, 700); busy = false; setOn(true); return; }
     var tool = ACT.test(q) && TOOLS.filter(function (t) { return t[0].test(q); })[0];
     if (tool) {
-      var m = add('a', 'Para eso usa la herramienta «' + tool[2] + '».'), b = document.createElement('button');
-      b.type = 'button'; b.className = 'btn sm'; b.textContent = 'Abrir ' + tool[2]; b.onclick = function () { openTool(tool[1]); }; m.appendChild(b);
+      var m = add('a', 'Eso se hace directamente en la pestaña «' + tool[2] + '» de la app:\n1. Pulsa el botón de abajo para ir a la herramienta.\n2. Sube o arrastra tu archivo.\n3. Elige el formato de salida y pulsa "Convertir".');
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'btn sm'; b.style.display = 'block'; b.style.marginTop = '10px';
+      b.textContent = 'Ir a ' + tool[2];
+      b.onclick = function () { openTool(tool[1]); };
+      m.appendChild(b);
       setFace('happy'); setTimeout(function () { setFace('idle'); }, 700); busy = false; setOn(true); return;
     }
     var out = add('a gv-ty', ''); out.innerHTML = '<i></i><i></i><i></i>'; setFace('think'); var ctx = '';
