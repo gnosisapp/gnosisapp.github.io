@@ -73,8 +73,8 @@ Todos se cargan sin modificar.
 
 **Built with Llama.** Gnovi funciona con Llama 3.2, un modelo creado por Meta que se ejecuta en el dispositivo de la persona usuaria. Gnosis lo integró, pero no lo desarrolló ni lo entrenó. Llama 3.2 se licencia bajo la Llama 3.2 Community License y su copyright pertenece a Meta Platforms, Inc. El uso de Gnovi está sujeto a esa licencia y a su política de uso aceptable:
 
-- Licencia: https://www.llama.com/llama3_2/license/
-- Política de uso aceptable: https://www.llama.com/llama3_2/use-policy/
+Licencia: https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/LICENSE
+Política de uso aceptable: https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/USE_POLICY.md
 
 Gnovi es una IA en Beta y puede cometer errores.
 
