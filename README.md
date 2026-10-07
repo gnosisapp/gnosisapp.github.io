@@ -49,6 +49,43 @@ Gnosis está diseñada bajo el principio de privacidad por diseño:
 
 ---
 
-## Licencia
+## Créditos y licencias
 
-Este proyecto está protegido bajo su respectiva licencia propietaria de software y derechos de autor. Consulta el archivo LICENSE para conocer los términos de uso y las restricciones legales aplicables.
+Gnosis es software propietario. Consulta el archivo [LICENSE](LICENSE). Los componentes de terceros que usa se rigen por sus propias licencias y no están cubiertos por las restricciones de esa licencia.
+
+### Componentes de terceros
+
+| Componente | Uso | Licencia |
+|---|---|---|
+| [jsPDF](https://github.com/parallax/jsPDF) | Creación de PDF | MIT |
+| [PapaParse](https://www.papaparse.com) | Lectura y escritura de CSV | MIT |
+| [JSZip](https://stuk.github.io/jszip/) | Archivos DOCX y ZIP | MIT o GPL v3 (se usa bajo MIT) |
+| [lamejs](https://github.com/zhuker/lamejs) | Codificación MP3 | LGPL |
+| [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator) | Códigos QR | MIT |
+| [pdf-lib](https://pdf-lib.js.org) | Unir PDF | MIT |
+| [PDF.js](https://mozilla.github.io/pdf.js/) | Lectura de PDF y miniaturas | Apache 2.0 |
+| [WebLLM](https://webllm.mlc.ai) | Ejecuta el modelo de Gnovi en el navegador | Apache 2.0 |
+| Llama 3.2 1B Instruct | Modelo de lenguaje de Gnovi | Llama 3.2 Community License |
+
+Todos se cargan sin modificar.
+
+### Gnovi y Llama
+
+**Built with Llama.** Gnovi funciona con Llama 3.2, un modelo creado por Meta que se ejecuta en el dispositivo de la persona usuaria. Gnosis lo integró, pero no lo desarrolló ni lo entrenó. Llama 3.2 se licencia bajo la Llama 3.2 Community License y su copyright pertenece a Meta Platforms, Inc. El uso de Gnovi está sujeto a esa licencia y a su política de uso aceptable:
+
+- Licencia: https://www.llama.com/llama3_2/license/
+- Política de uso aceptable: https://www.llama.com/llama3_2/use-policy/
+
+Gnovi es una IA en Beta y puede cometer errores.
+
+### MP3 y LAME
+
+La exportación a MP3 usa lamejs, una adaptación del proyecto [LAME](https://lame.sourceforge.net), publicada bajo LGPL. Se carga como archivo independiente y sin cambios.
+
+### Wikipedia
+
+Si la persona activa la búsqueda, Gnovi consulta es.wikipedia.org. Ese contenido pertenece a sus autores y se ofrece bajo [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+
+### Privacidad
+
+Los archivos se procesan en el dispositivo y no se envían a ningún servidor de Gnosis. Las librerías y el modelo se descargan de servidores de terceros, y la consulta de búsqueda en Wikipedia solo sale del dispositivo si activas esa opción.
