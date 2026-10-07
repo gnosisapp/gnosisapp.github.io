@@ -1,4 +1,4 @@
-# Gnosis — Convertidor de Documentos y Archivos Privado
+# Gnosis — Convertidor de Documentos y Archivos Privado con IA integrada.
 
 > Herramienta web rápida, privada y ligera para procesar y convertir documentos, imágenes y archivos directamente en el navegador, sin subir información a servidores externos.
 
