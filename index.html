@@ -971,21 +971,35 @@ document.addEventListener('input', e => { const t = e.target; if (t.dataset && t
   var mob = matchMedia('(pointer:coarse)').matches || (navigator.deviceMemory && navigator.deviceMemory <= 4);
   var MODEL = mob ? 'Llama-3.2-1B-Instruct-q4f16_1-MLC' : 'Qwen2.5-1.5B-Instruct-q4f16_1-MLC';
   var SIZE = mob ? '700 MB' : '1 GB';
-  var SYS = 'Eres Gnovi, el asistente oficial de Gnosis (convertidor web en tu navegador). ' +
-    'MAPA DE HERRAMIENTAS:\n' +
-    '- "Imágenes": Convierte PNG, JPG, WEBP y BMP entre sí, y a PDF.\n' +
-    '- "Audio": Convierte WAV, MP3, OGG, OPUS, M4A, AAC, FLAC y AIFF en ambas direcciones.\n' +
-    '- "Video a audio": Extrae audio (MP4/MOV a MP3/WAV/AAC). NO convierte audio de vuelta a video.\n' +
-    '- "Documentos y datos": Convierte entre PDF (con texto), Word (DOCX/DOC), TXT, Markdown, HTML, JSON, CSV y RTF en ambas direcciones.\n' +
-    '- "Escáner": Pasa fotos de apuntes a PDF limpio.\n' +
-    '- "Unir PDF": Une dos o más PDFs.\n' +
-    '- "Códigos QR": Genera códigos QR.\n\n' +
-    'REGLAS:\n' +
-    '1. TÚ NO CONVIERTES NI DESCARGAS NADA AQUÍ EN EL CHAT; guía a la pestaña adecuada.\n' +
-    '2. Si te preguntan "¿y viceversa?" o "¿al revés?", revisa el mensaje anterior y aclara si esa herramienta lo permite en ambos sentidos.\n' +
-    '3. Responde siempre en español, breve y en máximo 2 o 3 oraciones.';
-  var TOOLS = [[/\bqr\b/i, 'qr', 'Códigos QR'], [/esc[aá]ner|escanear|apuntes/i, 'scan', 'Escáner'], [/unir|unificar|juntar|combinar/i, 'merge', 'Unir PDF'], [/extraer audio|video a audio|audio d[eo]l? video/i, 'vid', 'Video a audio'], [/word|docx?\b|pdf|csv|json|documento/i, 'doc', 'Documentos y datos'], [/imagen|foto|jpg|jpeg|png|webp/i, 'img', 'Imágenes'], [/audio|mp3|wav|m4a/i, 'aud', 'Audio']];
-  var ACT = /convert|pasar|pasa\b|hacer|haz\b|crea|genera|abrir|abre\b|unir|une\b|extra|comprim|necesito|quiero|c[oó]mo|\ba\b|\bto\b/i;
+  var SYS = 'Eres Gnovi, asistente oficial de Gnosis (convertidor web en el navegador, 100% privado y local).\n\n' +
+    'TOLERANCIA A ERRORES Y LENGUAJE:\n' +
+    '- Interpreta siempre la intencion del usuario ignorando faltas de ortografia, errores de dedo, omision de tildes o abreviaturas informales (por ejemplo: "kombertir", "aser", "biseversa", "ke aces", "q ase", "vidio", "img").\n\n' +
+    'CAPACIDADES DE LA WEB:\n' +
+    '1. Imagenes: Convierte PNG, JPG, WEBP y BMP entre si, y exporta a PDF.\n' +
+    '2. Audio: Convierte WAV, MP3, OGG, OPUS, M4A, AAC, FLAC y AIFF en ambos sentidos.\n' +
+    '3. Video a audio: Extrae audio (MP4/MOV a MP3/WAV/AAC). NO convierte audio a video.\n' +
+    '4. Documentos y datos: Convierte entre PDF (con texto), Word (DOCX/DOC), TXT, Markdown, HTML, JSON, CSV y RTF en ambos sentidos.\n' +
+    '5. Escaner: Fotos de apuntes a PDF limpio.\n' +
+    '6. Unir PDF: Junta varios PDFs en uno.\n' +
+    '7. Codigos QR: Crea codigos QR personalizados.\n\n' +
+    'REGLAS DE RESPUESTA:\n' +
+    '1. NUNCA descargues ni conviertas archivos dentro de este chat; indica siempre en que pestaña se hace.\n' +
+    '2. Si te preguntan que puedes hacer o para que sirves (incluso escrito con faltas como "ke ases", "en q ayudas", "para q sirbes") DEBES responder obligatoriamente:\n' +
+    '   a) Que eres el guia para convertir y optimizar archivos con las herramientas de Gnosis.\n' +
+    '   b) Agregar textualmente: "Tambien te puedo ayudar con temas generales como responder preguntas, redactar o resumir textos".\n' +
+    '   c) Explicar la funcion de abajo: "Y si necesitas informacion o datos en tiempo real, puedes activar el interruptor de Wikipedia que tienes aqui abajo".\n' +
+    '3. Si preguntan "¿y viceversa?" o variantes ("al reves", "bisebersa", "de buelta"), analiza el mensaje anterior y aclara si es posible en ambos sentidos.\n' +
+    '4. Responde siempre en español, con tono natural y directo, en maximo 3 o 4 oraciones.';
+  var TOOLS = [
+    [/\bqr\b/i, 'qr', 'Códigos QR'],
+    [/es[ck]an|apunte|hoja|pizarr/i, 'scan', 'Escáner'],
+    [/uni[rn]|junt|peg|combin|mezcl/i, 'merge', 'Unir PDF'],
+    [/extra|vid[ei]o.*aud|aud.*vid/i, 'vid', 'Video a audio'],
+    [/wor[dt]|doc|pdf|txt|csv|json|docu|texto/i, 'doc', 'Documentos y datos'],
+    [/ima[gj]|foto|pic|jpg|jpeg|png|webp|bmp/i, 'img', 'Imágenes'],
+    [/aud|mp3|wav|m4a|sonid|cancion|musica/i, 'aud', 'Audio']
+  ];
+  var ACT = /[ck]onver|pasar|pasa\b|[ha]ser|[ha]z\b|[ck]rea|genera|abri[rn]|abre\b|uni[rn]|une\b|extra|[ck]omprim|ne[cs]e[cs]it|[qk]uiero|[ck][oó]mo|\ba\b|\bto\b/i;
   var WHO = /qui[eé]n eres|qu[eé] eres|c[oó]mo te llamas|cu[aá]l es tu nombre|qui[eé]n te (cre[oó]|hizo|desarroll[oó]|program[oó])|eres (chatgpt|claude|gemini)/i;
   var ID = 'Soy Gnovi, el asistente de IA de Gnosis. Gnosis me integró en esta herramienta, pero funciono con modelos de lenguaje abierto (Qwen de Alibaba y Llama de Meta) que corre en tu dispositivo. Estoy en Beta y puedo cometer errores.';
   var eng = null, busy = false, loading = false, chatted = false, hist = [];
