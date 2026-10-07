@@ -585,11 +585,11 @@ const SECTIONS = {
     opts: audOpts('aud')
   },
   vid: {
-    title: 'Video a audio', hint: 'MP4, M4V, MOV, WEBM, MKV. El audio se extrae en el navegador; los videos muy pesados pueden agotar la memoria.',
+    title: 'Video a audio', hint: 'MP4, M4V, MOV, WEBM, MKV.',
     exts: ['mp4', 'm4v', 'mov', 'webm', 'mkv', 'ogv', '3gp'], run: runVideo, opts: audOpts('vid')
   },
   doc: {
-    title: 'Documentos y datos', hint: 'MD, TXT, CSV, JSON, HTML, DOC, DOCX, RTF, PDF (texto seleccionable)', exts: ['md', 'markdown', 'txt', 'csv', 'json', 'html', 'htm', 'doc', 'docx', 'rtf', 'pdf'], run: runDoc,
+    title: 'Documentos y datos', hint: 'MD, TXT, CSV, JSON, HTML, DOC, DOCX, RTF, PDF', exts: ['md', 'markdown', 'txt', 'csv', 'json', 'html', 'htm', 'doc', 'docx', 'rtf', 'pdf'], run: runDoc,
     opts: opt('doc-fmt', 'Formato de salida', [['pdf', 'PDF'], ['txt', 'TXT'], ['md', 'Markdown'], ['html', 'HTML'], ['json', 'JSON'], ['csv', 'CSV'], ['doc', 'Word (.doc)'], ['docx', 'Word (.docx)'], ['rtf', 'RTF']]) +
       opt('doc-json', 'Salida JSON', [['pretty', 'Legible (indentado)'], ['min', 'Minificado']]) +
       opt('doc-delim', 'Delimitador CSV', [['comma', 'Coma'], ['semi', 'Punto y coma'], ['tab', 'Tabulación'], ['pipe', 'Barra vertical']])
@@ -834,7 +834,8 @@ const FRASES = [
   'Si sigues picando, cobramos. Es broma, sigue siendo gratis.',
   'Eso no es un botón, pero te lo aceptamos.',
   '¿Todo bien en casa?',
-  'Diez clics. Felicidades, desbloqueaste absolutamente nada.'
+  'Diez clics. Felicidades, desbloqueaste absolutamente nada.',
+  'Six Seveen.'
 ];
 let clicks = 0, clickT, lastF = -1;
 $('#logo').addEventListener('click', e => {
